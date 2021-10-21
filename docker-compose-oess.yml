@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  oess-docker:
+     build:
+       context: .
+       dockerfile: Dockerfile
+     container_name: oess-awsdx
+     hostname: oess-awsdx
+     image: oess-awsdx
+     restart: on-failure
+     privileged: true
+     volumes:
+       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+       # OESS repo should be checked out to /root/oess.awsdx
+       # Otherwise, adjust bind mount below accordingly.
+       - "/root/oess.awsdx/perl-lib:/perl-lib"
+     network_mode: "host"
