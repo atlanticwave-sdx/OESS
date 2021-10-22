@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  oess-dev-docker:
+     build:
+       context: .
+       dockerfile: Dockerfile.dev
+     container_name: oess-awsdx-dev
+     hostname: oess-awsdx-dev
+     image: oess-awsdx-dev
+     restart: on-failure
+     privileged: true
+     volumes:
+       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+       # OESS repo should be checked out to /root/oess.awsdx
+       # Otherwise, adjust bind mount below accordingly.
+       - "/root/oess.awsdx/perl-lib:/perl-lib"
+     network_mode: "host"
+     environment:
+       OESS_PASSWORD: JTk23zvCDqwj
+       MYSQL_ROOT_PASSWORD: D28V7qVvuJHn
+       MYSQL_PASS: JTk23zvCDqwj
+       OESS_NETWORK_TYPE: vpn-mpls
+       NSO_HOST: aw-sdx-lc-2.renci.org
+       NSO_PASSWORD: JTk23zvCDqwj
+       NSO_USERNAME: awsdx
+       OESS_LOCAL_ASN: JTk23zvCDqwj
+       TSDS_URL: aw-sdx-lc-2.renci.org
+       TSDS_PASSWORD: JTk23zvCDqwj
+       TSDS_USERNAME: awsdx
+       TSDS_REALM: TSDS_REALM
+       NETCONF_USERNAME: awsdx
+       NETCONF_PASSWORD: JTk23zvCDqwj
+       NETCONF_DIFF_INTERVAL: 900

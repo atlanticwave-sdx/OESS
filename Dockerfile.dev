@@ -25,3 +25,5 @@ RUN chmod 777 /entrypoint.sh
 
 RUN touch /var/log/oess.log
 RUN chmod 666 /var/log/oess.log
+ENTRYPOINT ["/entrypoint.sh"]
+
